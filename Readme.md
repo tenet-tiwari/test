@@ -18,8 +18,8 @@ A modern task management system built with React for the frontend and a backend 
 ## Screenshots
 
 ### Homepage
-![Homepage](logo1.jpg)
+![Homepage](/client/public/logo1.jpg)
 
 ### Add Task Form
-![Add Task Form](logo2.jpg)
+![Add Task Form](/client/public/logo2.jpg)
 
