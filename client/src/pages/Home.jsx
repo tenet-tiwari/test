@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("https://to-do-app-backend-n4sl.onrender.com/api/tasks", {
+        const response = await fetch("https://to-do-app-backend-qkmb.onrender.com/api/tasks", {
           method: "GET",
         });
         const data = await response.json();
@@ -26,7 +26,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`https://to-do-app-backend-n4sl.onrender.com/api/tasks/${id}`, {
+      const response = await fetch(`https://to-do-app-backend-qkmb.onrender.com/api/tasks/${id}`, {
         method: "DELETE",
       });
 
@@ -43,7 +43,7 @@ const Home = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      const response = await fetch(`https://to-do-app-backend-n4sl.onrender.com/api/tasks/${id}`, {
+      const response = await fetch(`https://to-do-app-backend-qkmb.onrender.com/api/tasks/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
