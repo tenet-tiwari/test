@@ -1,14 +1,26 @@
-import { useState } from 'react'
+import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import React from 'react';
-import Home from './pages/Home';
+import React from "react";
+import Home from "./pages/Home";
+//import { Route, Router, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <Home />
-    </div>
+    <Router>
+   <ToastContainer
+        position="top-center"
+
+        theme="light"
+      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+   </Router>
   );
 }
 
 export default App;
+

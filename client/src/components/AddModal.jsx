@@ -1,22 +1,47 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { useState } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Example({ onClose }) {
-  const [taskName, setTaskName] = useState('')
-  const [deadline, setDeadline] = useState('')
+  const [taskName, setTaskName] = useState("");
+  const [deadline, setDeadline] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Task Name:', taskName)
-    console.log('Deadline:', deadline)
-    setTaskName('')
-    setDeadline('')
-    onClose() // Close the modal after submission
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch(`http://localhost:5000/api/tasks`, {
+        method: "POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({ taskName, deadline }),
+      });
+  
+      if (response.ok) {
+        toast.success(response?.message)
+        const newTask = await response.json();
+        setTasks([...tasks, newTask]);
+      } else {
+        console.error("Failed to add task");
+      }
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+  
+    setTaskName("");
+    setDeadline("");
+    onClose(); 
+  };
+  
+
 
   return (
     <Dialog open={true} onClose={onClose} className="relative z-10">
@@ -29,17 +54,29 @@ export default function Example({ onClose }) {
         <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full max-w-2xl sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto">
           <div className="w-auto bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-6">
             <div className="w-auto flex flex-col justify-center items-center p-4">
-              <div className="flex flex-col items-center sm:flex-row sm:items-center mb-4">
+              <div className="flex flex-col items-center  mb-4">
                 <div className="mx-auto flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
-                  <CheckCircleIcon aria-hidden="true" className="h-8 w-8 text-green-600" />
+                  <CheckCircleIcon
+                    aria-hidden="true"
+                    className="h-8 w-8 text-green-600"
+                  />
                 </div>
-                <DialogTitle as="h3" className="-ml-0.5 mt-3 text-xl font-semibold leading-6 text-gray-900 sm:ml-4 sm:mt-0">
+                <DialogTitle
+                  as="h3"
+                  className="-ml-0.3 mt-3 text-xl font-semibold leading-6 text-gray-900 "
+                >
                   Add Task
                 </DialogTitle>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md px-2 sm:px-0">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4 w-full max-w-md px-2 sm:px-0"
+              >
                 <div>
-                  <label htmlFor="taskName" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="taskName"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Task Name
                   </label>
                   <input
@@ -52,7 +89,10 @@ export default function Example({ onClose }) {
                   />
                 </div>
                 <div>
-                  <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="deadline"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Deadline
                   </label>
                   <input
@@ -85,5 +125,5 @@ export default function Example({ onClose }) {
         </DialogPanel>
       </div>
     </Dialog>
-  )
+  );
 }

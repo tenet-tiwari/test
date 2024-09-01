@@ -8,11 +8,13 @@ dotenv.config();
 
 const app = express();
 
+
 // Connect to database
 connectDB();
 
 // Middleware
 app.use(cors());
+//app.use(body)
 app.use(express.json());
 
 // Routes

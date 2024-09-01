@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const taskSchema = new mongoose.Schema({
   taskName: {
     type: String,
@@ -9,9 +10,15 @@ const taskSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["pending", "complete", "ongoing"],
+    default: "pending", 
+  },
 }, {
   timestamps: true,
 });
+
 
 const Task = mongoose.model('Task', taskSchema);
 

@@ -1,0 +1,22 @@
+/* Custom scrollbar styling */
+.scrollbar::-webkit-scrollbar {
+    
+    width: 10px; 
+    height: 5px;
+   
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    margin-bottom: 5px;
+    @apply bg-white;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+   
+    @apply bg-slate-300;
+    border-radius: 9999px;
+}
+
+.scrollbar {
+    /* scrollbar-width: thin; */
+}

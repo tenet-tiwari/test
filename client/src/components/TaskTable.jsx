@@ -1,30 +1,44 @@
-// src/components/TaskTable.js
-import React from 'react';
-import TaskRow from './TaskRow';
+import React from "react";
+import TaskRow from "./TaskRow";
 
-const TaskTable = ({ tasks, onDelete, onStatusChange }) => {
+const TaskTable = ({ tasks,onDelete,onStatusChange }) => {
+
+
   return (
-    <table className="table-auto w-full border-collapse border border-gray-200">
-      <thead>
-        <tr>
-          <th className="border border-gray-300 p-2">Sl No.</th>
-          <th className="border border-gray-300 p-2">Task Name</th>
-          <th className="border border-gray-300 p-2">Deadline</th>
-          <th className="border border-gray-300 p-2">Status</th>
-          <th className="border border-gray-300 p-2">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tasks.map(task => (
-          <TaskRow
-            key={task.id}
-            task={task}
-            onDelete={onDelete}
-            onStatusChange={onStatusChange}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className="mx-2 sm:mx-4 md:mx-6 lg:mx-8 overflow-x-auto scrollbar  pb-2 lg:pb-0 shadow-inset-light">
+      <table className="min-w-full table-auto border-collapse border border-gray-200">
+        <thead>
+          <tr>
+            <th className="border border-gray-300 p-2 whitespace-nowrap">
+              Sl No.
+            </th>
+            <th className="border border-gray-300 p-2 whitespace-nowrap">
+              Task Name
+            </th>
+            <th className="border border-gray-300 p-2 whitespace-nowrap">
+              Deadline
+            </th>
+            <th className="border border-gray-300 p-2 whitespace-nowrap">
+              Status
+            </th>
+            <th className="border border-gray-300 p-2 whitespace-nowrap">
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {tasks.map((task, index) => (
+            <TaskRow
+              key={task._id}
+              task={task}
+              onDelete={onDelete}
+              onStatusChange={onStatusChange}
+              index={index + 1}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
