@@ -18,15 +18,8 @@ A modern task management system built with React for the frontend and a backend 
 ## Screenshots
 
 ### Homepage
-![Homepage](path/to/homepage-screenshot.png)
+![Homepage]()
 
 ### Add Task Form
-![Add Task Form](path/to/add-task-form-screenshot.png)
+![Add Task Form]()
 
-## Getting Started
-
-To get a local copy up and running follow these simple steps:
-
-1. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/your-username/task-management-system.git

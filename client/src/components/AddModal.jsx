@@ -17,7 +17,7 @@ export default function Example({ onClose }) {
     e.preventDefault();
   
     try {
-      const response = await fetch(`https://to-do-app-backend-n4sl.onrender.com//api/tasks`, {
+      const response = await fetch(`https://to-do-app-backend-n4sl.onrender.com/api/tasks`, {
         method: "POST",
         headers:{
           "Content-Type":"application/json"
